@@ -17,9 +17,9 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar_bar">
-            <div class="container container_bar">
-                <a class="navbar-logo" href="#">
+        <nav class="navbar">
+            <div class="container">
+                <a href="../index.html">
                     <svg width="50" height="40" viewBox="0 0 50 40" fill="#fff" xmlns="http://www.w3.org/2000/svg">
                         <rect width="50" height="40" rx="3" style="fill: #000;"></rect>
                         <path
@@ -35,39 +35,29 @@
                 <div>
                     <a>Edit</a>
                 </div>
+                <div>
+                    <a>X</a>
+                </div>
             </div>
         </nav>
     </header>
 
     <main>
-        <div class="row d-flex justify-content-center border border-dark">
-                <div class="center-section col-lg-8 col-md-10 bg-white rounded-3 border border-dark">
-                    <div class="post_card ">
-                        
-                            <div class="crayons-article-form__header">
-
-
-                                <nav class="crayons-article-form__tabs crayons-tabs ml-auto" aria-label="View post modes">
-
-                                    <div class="crayons-article-form__top text-padding drop-area">
-                                        <div class="crayons-article-form__cover" role="presentation">
-                                            
-                                                <textarea class="crayons-textfield crayons-textfield--ghost fs-3xl m:fs-4xl l:fs-5xl fw-bold s:fw-heavy lh-tight" type="text" id="title" placeholder="New post title here..." aria-label="Post Title" autofocus="" style="min-height: 60px; max-height: 60px;"></textarea>
-                                            </div><div class="crayons-article-form__tagsfield">
-                                                <div class="crayons-article-form__tagswrapper crayons-field">
-                                                    <input data-testid="tag-input" aria-label="Post Tags" id="tags" type="text" class="crayons-textfield crayons-textfield--ghost ff-monospace crayons-article-form__tags" name="listing[tag_list]" placeholder="Add up to 4 tags..." autocomplete="off" pattern="[0-9A-Za-z, ]+"></div>
-                                                    <input type="text" id="url" placeholder="Add image url..."></div></div><div data-testid="article-form__body" class="crayons-article-form__body drop-area text-padding"><div class="crayons-article-form__toolbar false"><div class="flex items-center"><label class="cursor-pointer crayons-btn crayons-btn--ghost"><svg width="24" height="24" viewBox="0 0 24 24" class="crayons-icon" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"></div></div><div aria-live="polite" class="screen-reader-only"></div><div id="combobox-container" data-testid="autocomplete-wrapper" class="crayons-autocomplete h-100" data-reach-combobox="" data-state="idle" style="min-height: 27px;">
-                                                        
-                                                        <textarea aria-label="Post Content" name="body_markdown" placeholder="Write your post content here..." class="crayons-textfield crayons-textfield--ghost crayons-article-form__body__field ff-monospace fs-l h-100" data-gramm_editor="false" id="body" data-mention-autocomplete-active="true" style="min-height: 27px;"></textarea></div></div></div><div class="crayons-article-form__aside"><div data-testid="article-form__help-section" class="sticky"></div></div><div class="crayons-article-form__footer">
-                                                        <button type="button" class="btn btn-primary" id="createPost">Publish</button>
-                                                        <button class="crayons-btn crayons-btn--ghost crayons-btn--icon" title="Post options" type="button" id="post-options-btn" aria-expanded="false" aria-controls="post-options-dropdown" aria-haspopup="true"><svg width="24" class="crayons-icon" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="75abcb76478519ca4eb9"><title id="75abcb76478519ca4eb9">Post options</title><path d="M12 1l9.5 5.5v11L12 23l-9.5-5.5v-11L12 1zm0 2.311L4.5 7.653v8.694l7.5 4.342 7.5-4.342V7.653L12 3.311zM12 16a4 4 0 110-8 4 4 0 010 8zm0-2a2 2 0 100-4 2 2 0 000 4z"></path></svg></button></div></div></div>
-
-                    </div>
-
+        <div class="row d-flex justify-content-center">
+            <div class="center-section col-lg-8 col-md-10 bg-white rounded-3 flex-wrap">
+                <textarea class="border-white title type="text" id="title" placeholder="New post title here..." aria-label="Post Title" autofocus="" style="min-width: 20px max-width:600px; min-height: 120px;"></textarea>
+                <div class="d-flex">
+                    <input aria-label="Post Tags" id="tags" type="text" class="border-white mt-2" placeholder="Add up to 4 tags..." pattern="[0-9A-Za-z, ]+">
                 </div>
-
+                <input class="border-white mt-3" type="text" id="url" placeholder="Add image url...">
+                <textarea aria-label="Post Content" name="body_markdown" placeholder="Write your post content here..." class="border-white fs-l h-100 mt-3 " id="body" style="min-width: 750px; min-height: 400px; max-height: 400px;"></textarea>
             </div>
-    
+            <div class='footer'>
+                <button type="button" class="btn btn-primary" id="createPost">Publish</button>
+                <svg width="24" class="crayons-icon" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="75abcb76478519ca4eb9"><title id="75abcb76478519ca4eb9">Post options</title><path d="M12 1l9.5 5.5v11L12 23l-9.5-5.5v-11L12 1zm0 2.311L4.5 7.653v8.694l7.5 4.342 7.5-4.342V7.653L12 3.311zM12 16a4 4 0 110-8 4 4 0 010 8zm0-2a2 2 0 100-4 2 2 0 000 4z"></path></svg>
+            </div>
+        </div>
+
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

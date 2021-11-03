@@ -18,6 +18,10 @@ $(document).ready( ()=>{
             success: (response) =>{
                 console.log(response)
                 alert('Your Post was succesfully added');
+                $('#title').val('');
+                $('#body').val('');
+                $('#url').val('');
+                $('#tags').val('');
             } ,
             error: (error) => {
                 console.log(error)

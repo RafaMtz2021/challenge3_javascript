@@ -19,6 +19,10 @@ $(document).ready( ()=>{
                 // callback cuando la petición es exitosa
                 console.log(response)
                 alert('Your Post was succesfully added');
+                $('#title').val('');
+                $('#body').val('');
+                $('#url').val('');
+                $('#tags').val('');
             } ,
             error: (error) => {
                 // callback para cuando hay un error

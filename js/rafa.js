@@ -5,10 +5,10 @@ $(document).ready( ()=>{
         const body = $.trim($("#body").val());
         const url = $.trim($('#url').val());
         const protoTags = $.trim($("#tags").val());
-        const tags = protoTags.split(',')
+        const tags = protoTags.split(',');
         const date_format = new Date();
         const date = date_format.toISOString().split('T')[0];
-        const likes = Math.floor((Math.random() * (100000 + 1 -100)) + 100)
+        const likes = Math.floor((Math.random() * (100000 + 1 -100)) + 100);
 
         $.ajax({
             method: 'POST',
@@ -17,9 +17,11 @@ $(document).ready( ()=>{
             
             success: (response) =>{
                 console.log(response)
+                alert('Your Post was succesfully added');
             } ,
             error: (error) => {
                 console.log(error)
+                alert('An error occurred while processing your request');
             },
             async: true,
         })

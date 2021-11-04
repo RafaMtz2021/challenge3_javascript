@@ -17,57 +17,88 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar_bar">
-            <div class="container container_bar">
-                <a class="navbar-logo" href="#">
-                    <svg width="50" height="40" viewBox="0 0 50 40" fill="#fff" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="50" height="40" rx="3" style="fill: #000;"></rect>
-                        <path
-                            d="M19.099 23.508c0 1.31-.423 2.388-1.27 3.234-.838.839-1.942 1.258-3.312 1.258h-4.403V12.277h4.492c1.31 0 2.385.423 3.224 1.27.846.838 1.269 1.912 1.269 3.223v6.738zm-2.808 0V16.77c0-.562-.187-.981-.562-1.258-.374-.285-.748-.427-1.122-.427h-1.685v10.107h1.684c.375 0 .75-.138 1.123-.415.375-.285.562-.708.562-1.27zM28.185 28h-5.896c-.562 0-1.03-.187-1.404-.561-.375-.375-.562-.843-.562-1.404V14.243c0-.562.187-1.03.562-1.404.374-.375.842-.562 1.404-.562h5.896v2.808H23.13v3.65h3.088v2.808h-3.088v3.65h5.054V28zm7.12 0c-.936 0-1.684-.655-2.246-1.965l-3.65-13.758h3.089l2.807 10.804 2.808-10.804H41.2l-3.65 13.758C36.99 27.345 36.241 28 35.305 28z"
-                            style="fill: var(--base-inverted);">
-                        </path>
-                    </svg>
-                </a>
-                <div class="ms-3">
-                    <span>Create Post</span>
-                </div>
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar_bar">
+                <div class="container container_bar">
+                    <a class="navbar-logo" href="../index.html">
+                        <svg width="50" height="40" viewBox="0 0 50 40" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="50" height="40" rx="3" style="fill: #000;"></rect>
+                            <path
+                                d="M19.099 23.508c0 1.31-.423 2.388-1.27 3.234-.838.839-1.942 1.258-3.312 1.258h-4.403V12.277h4.492c1.31 0 2.385.423 3.224 1.27.846.838 1.269 1.912 1.269 3.223v6.738zm-2.808 0V16.77c0-.562-.187-.981-.562-1.258-.374-.285-.748-.427-1.122-.427h-1.685v10.107h1.684c.375 0 .75-.138 1.123-.415.375-.285.562-.708.562-1.27zM28.185 28h-5.896c-.562 0-1.03-.187-1.404-.561-.375-.375-.562-.843-.562-1.404V14.243c0-.562.187-1.03.562-1.404.374-.375.842-.562 1.404-.562h5.896v2.808H23.13v3.65h3.088v2.808h-3.088v3.65h5.054V28zm7.12 0c-.936 0-1.684-.655-2.246-1.965l-3.65-13.758h3.089l2.807 10.804 2.808-10.804H41.2l-3.65 13.758C36.99 27.345 36.241 28 35.305 28z"
+                                style="fill: var(--base-inverted);"></path>
+                        </svg>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <form class="d-flex d-flex_bar">
+                        <span>Create Post</span>
 
-                <div>
-                    <a>Edit</a>
+                    </form>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mb-2 mb-lg-0 navbar-nav_bar">
+                            <li class="nav-item">
+                                <a href="#" class="edit">Edit</a>
+                            </li>
+                            <li class="nav-item">
+
+                            </li>
+                            <li class="nav-item">
+
+                            </li>
+                            <li class="nav-item dropdown">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-close" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    
+                                </button>
+                                
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">You have unsaved changes</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            You've made changes to your post. Do you want to navigate to leave this page?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a class="btn btn-danger" href="../index.html" role="button">Yes, leave the page</a>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, keep editing</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <div class="row d-flex justify-content-center border border-dark">
-                <div class="center-section col-lg-8 col-md-10 bg-white rounded-3 border border-dark">
-                    <div class="post_card ">
-                        
-                            <div class="crayons-article-form__header">
-
-
-                                <nav class="crayons-article-form__tabs crayons-tabs ml-auto" aria-label="View post modes">
-
-                                    <div class="crayons-article-form__top text-padding drop-area">
-                                        <div class="crayons-article-form__cover" role="presentation">
-                                            
-                                                <textarea class="crayons-textfield crayons-textfield--ghost fs-3xl m:fs-4xl l:fs-5xl fw-bold s:fw-heavy lh-tight" type="text" id="title" placeholder="New post title here..." aria-label="Post Title" autofocus="" style="min-height: 60px; max-height: 60px;"></textarea>
-                                            </div><div class="crayons-article-form__tagsfield">
-                                                <div class="crayons-article-form__tagswrapper crayons-field">
-                                                    <input data-testid="tag-input" aria-label="Post Tags" id="tags" type="text" class="crayons-textfield crayons-textfield--ghost ff-monospace crayons-article-form__tags" name="listing[tag_list]" placeholder="Add up to 4 tags..." autocomplete="off" pattern="[0-9A-Za-z, ]+"></div>
-                                                    <input type="text" id="url" placeholder="Add image url..."></div></div><div data-testid="article-form__body" class="crayons-article-form__body drop-area text-padding"><div class="crayons-article-form__toolbar false"><div class="flex items-center"><label class="cursor-pointer crayons-btn crayons-btn--ghost"><svg width="24" height="24" viewBox="0 0 24 24" class="crayons-icon" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"></div></div><div aria-live="polite" class="screen-reader-only"></div><div id="combobox-container" data-testid="autocomplete-wrapper" class="crayons-autocomplete h-100" data-reach-combobox="" data-state="idle" style="min-height: 27px;">
-                                                        
-                                                        <textarea aria-label="Post Content" name="body_markdown" placeholder="Write your post content here..." class="crayons-textfield crayons-textfield--ghost crayons-article-form__body__field ff-monospace fs-l h-100" data-gramm_editor="false" id="body" data-mention-autocomplete-active="true" style="min-height: 27px;"></textarea></div></div></div><div class="crayons-article-form__aside"><div data-testid="article-form__help-section" class="sticky"></div></div><div class="crayons-article-form__footer">
-                                                        <button type="button" class="btn btn-primary" id="createPost">Publish</button>
-                                                        <button class="crayons-btn crayons-btn--ghost crayons-btn--icon" title="Post options" type="button" id="post-options-btn" aria-expanded="false" aria-controls="post-options-dropdown" aria-haspopup="true"><svg width="24" class="crayons-icon" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="75abcb76478519ca4eb9"><title id="75abcb76478519ca4eb9">Post options</title><path d="M12 1l9.5 5.5v11L12 23l-9.5-5.5v-11L12 1zm0 2.311L4.5 7.653v8.694l7.5 4.342 7.5-4.342V7.653L12 3.311zM12 16a4 4 0 110-8 4 4 0 010 8zm0-2a2 2 0 100-4 2 2 0 000 4z"></path></svg></button></div></div></div>
-
-                    </div>
-
+        <div class="row d-flex justify-content-center">
+            <div class="center-section col-lg-8 col-md-10 bg-white rounded-3 flex-wrap">
+                <textarea class="title border-white" type="text" id="title" placeholder="New post title here..." aria-label="Post Title" autofocus="" style="min-width: 20px; max-width:600px;  min-height: 120px;"></textarea>
+                <div class="d-flex">
+                    <input aria-label="Post Tags" id="tags" type="text" class="border-white mt-2" placeholder="Add up to 4 tags..." pattern="[0-9A-Za-z, ]+">
                 </div>
-
+                <div>
+                    <input class="border-white mt-3" type="text" id="url" placeholder="Add image url...">
+                </div>
+                <textarea aria-label="Post Content" name="body_markdown" placeholder="Write your post content here..." class="border-white fs-l h-100 mt-3 " id="body" style="min-width: 750px; min-height: 400px; max-height: 400px;"></textarea>
             </div>
-    
+            <div class='d-flex w-100 justify-content-center mt-4'>
+                <button type="button" class="btn btn-primary" id="createPost">Publish</button>
+                <a href="#" class="align-self-center" ><svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="75abcb76478519ca4eb9"><title id="75abcb76478519ca4eb9">Post options</title><path d="M12 1l9.5 5.5v11L12 23l-9.5-5.5v-11L12 1zm0 2.311L4.5 7.653v8.694l7.5 4.342 7.5-4.342V7.653L12 3.311zM12 16a4 4 0 110-8 4 4 0 010 8zm0-2a2 2 0 100-4 2 2 0 000 4z"></path></svg></a>
+            </div>
+        </div>
+
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

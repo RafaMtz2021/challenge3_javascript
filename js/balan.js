@@ -1,49 +1,34 @@
+// identifying search-bar (input-form)
+
 const searchBar = $(".form-control_bar");
 const searchValue = searchBar.val();
 console.log(searchValue);
 
-const searchButton = $(".btn-sucess");
-console.log(searchButton);
 
+//identifying search.button (button-object)
+const searchButton = $(".btn-sucess");
+// console.log(searchButton);
+
+
+//adding listener to button
 searchButton.click(event => {
     event.preventDefault()
     console.log(searchValue)
 })
 
 
-// const getResponse = () => {
-    
-//     return $.ajax({
-//         method: 'GET',
-//         url: 'https://js-challenge-a0b1c-default-rtdb.firebaseio.com/.json',
-//         success: (response) => {
-//             return Object.entries(response)
-//         },
-//         error: (error) => {
-//             console.log(error)
-//         },
-//         async: true,
-//     })
-    
-// }
-
-
 // regular expression ready!
 let re1 = /`${searchValue}`/gi
-console.log(re1)
-let re2 = new RegExp(searchValue, 'gi',);    // this works good!
-console.log(re2)
+
+// console.log(re1)
+let inputRegExp = new RegExp(searchValue, 'gi');    // this works good!
+console.log(inputRegExp)
+
 let re3 = /adasdfas/gi
-console.log(re3, typeof(r2))
+// console.log(re3, typeof(r2))
 
 
-
-let testString = "C## is the best programming language in the world. But c# is better"
-
-console.log(re2.test(testString))  // test returns true or false
-
-
-
+// test array for testing
 let testObjectsArray = [[
     "-MnXMTky2hvq8C56e2WH", {
       "body": "Content Post Sample",
@@ -53,7 +38,8 @@ let testObjectsArray = [[
         "tag1",
         "tag2",
         "tag3",
-        "tag4"
+        "tag4",
+        "python"
       ],
       "title": "First Testing Post",
       "url": "https://akm-img-a-in.tosshub.com/indiatoday/images/story/201810/stockvault-person-studying-and-learning---knowledge-concept178241_0.jpeg?yCXmhi7e2ARwUtzHHlvtcrgETnDgFwCK&size=770:433"
@@ -67,7 +53,9 @@ let testObjectsArray = [[
         "css",
         "frontend",
         "ux",
-        "webdev"
+        "webdev",
+        "python",
+        "python"
       ],
       "title": "You Probably Don't Need Media Queries Anymore",
       "url": "https://res.cloudinary.com/practicaldev/image/fetch/s--bfBgl3GF--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qspvr74it45vxok3p6vw.png"
@@ -81,7 +69,7 @@ let testObjectsArray = [[
         "watercooler",
         "discuss",
         "webdev",
-        "startup"
+        "startup",
       ],
       "title": "Do you own a domain name without a purpose? Let me give you a project for it!",
       "url": "https://res.cloudinary.com/practicaldev/image/fetch/s--3FRsn0BK--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/68wct7ay4uddd20cdxza.jpg"
@@ -90,7 +78,7 @@ let testObjectsArray = [[
 ]
 
 
-// const AnotherArrayStructure = [];
+//function for fix response to a new form
 // this function works well!
 const getPostArrayStructure = (array) => {
     const postArrayStructure = [];
@@ -99,44 +87,91 @@ const getPostArrayStructure = (array) => {
         postArray.push(post[0], post[1]["body"]);
         post[1]["tags"].forEach((tag) => postArray.push(tag))
         postArray.push(post[1]["title"], post[1]["url"]);
-        postArrayStructure.push(postArray)
+        postArrayStructure.push(postArray);
     })
-
-    return postArrayStructure
-
+    return postArrayStructure;
 }
 
-getPostArrayStructure(testObjectsArray)
-console.log(typeof(getPostArrayStructure(testObjectsArray)[0][1]))
+let testStructure = getPostArrayStructure(testObjectsArray)
+console.log(getPostArrayStructure(testObjectsArray))
+
+// const filteredIDs = [];
+
+// count number of matches for a given string in the search-bar
+// ya funciona
+const ocurrencies = (post) => {
+    let filteredIDs = [];
+    const ocurreNum = post.reduce((counter, field) =>{
+        // console.log(field, counter)
+        // console.log(field.match(inputRegExp));
+        if((field.match(inputRegExp)) != null){
+            counter += (field.match(inputRegExp)).length
+        }else if(field.matchAll(inputRegExp) == null){
+             counter += 0
+         }
+         
+         return counter
+        },0)
+        
+        if(ocurreNum !== 0){
+            return filteredIDs.push(post[0])
+           }
+    return filteredIDs;
+    } 
+    
+
+// console.log(filteredIDs)
+// // let ocurrenciesTest = ocurrencies(arrayTest)
+// console.log(ocurrenciesTest)
 
 
-const testObjectsArrayFiltered = (array) => {
-    array.filter((post) => {
-        if(re2.test(post[1].body) || re2.test(post[1].title))
-        return console.log(post)
-        })
-    }
 
 
-testObjectsArrayFiltered(testObjectsArray)
+const filteredArray = (array) => {
 
+   let newArray = array.forEach((post) => {
 
+        return ocurrencies(post)
 
+    })
 
+    return console.log(newArray)
+    
+}
 
+let filteredIDs = filteredArray(testStructure)
 
-
-
-
-
-
+console.log(filteredIDs)
 
 
 
 
+// let arrayTest = getPostArrayStructure(testObjectsArray)[2]
+// console.log(arrayTest)
+
+// // ya funciona
+// const ocurrencies = (post) => {
+//     const ocurreNum = post.reduce((counter, field) =>{
+//         console.log(field, counter)
+//         console.log(field.match(inputRegExp));
+//         if((field.match(inputRegExp)) != null){
+//             counter += (field.match(inputRegExp)).length
+//         }else if(field.matchAll(inputRegExp) == null){
+//              counter += 0
+//          }
+//         return counter
+//     },0)
+
+//     return ocurreNum
+// } 
+
+// let ocurrenciesTest = ocurrencies(arrayTest)
+// console.log(ocurrenciesTest)
 
 
 
+// // testObjectsArrayFiltered(testObjectsArray)
+// // console.log(filteredIDs)
 
 
 // GET request to DB
@@ -147,7 +182,14 @@ const getResponse = () => {
         method: 'GET',
         url: 'https://js-challenge-a0b1c-default-rtdb.firebaseio.com/.json',
         success: (response) => {
-        console.log(Object.entries(response))
+            let objectedResponse = Object.entries(response);
+            console.log(response)
+            console.log(objectedResponse);
+            let postStructure = getPostArrayStructure(objectedResponse);
+            console.log(postStructure);
+
+        // const alternResponseArray = getPostArrayStructure(responseArray);
+        // testObjectsArrayFiltered(alternResponseArray)
         // let postsFromDB = Object.entries(response)
         //   console.log(Object.entries(xhr)) 
         // return (Object.entries(xhr))
@@ -164,11 +206,17 @@ const getResponse = () => {
 
 
 // console.log(postsFromDB)
-console.log(getResponse())
-console.log(Object.entries(getResponse()))
+// console.log(getResponse())
+// console.log(Object.entries(getResponse()))
+
+searchButton.click(event => {
+    event.preventDefault()
+    console.log(getResponse())
+})
 
 
 
 
-
-
+// let testtext = "In a rush? Head down to the comments and share a domain name you own without a purpose, I (and hopefully some others) will give you a fun side project idea for it!\n\nFor those not in a rush!\nI own quite a few domain names. I recently wrote about my emoji domain 👩‍💻👨‍💻.to, I also own a domain name purely for the fact it sits on the million dollar homepage and is a part of internet history!\n\nI even bought a domain name a few years ago that I still think could be great for a codepen competitor - codersplayground.co.uk!\n\nOh and don't forget ultimatemot*******kingwebsite.com (Warning, do not click this link if swearing offends you), which is probably the naughtiest domain I own and actually use!\n\nToday, for the first time in a while, I bought a domain name that not only fit a big side project beautifully, but would also work for loads of different use cases.\n\nIt is probably the \"best\" (best when talking about commercial viability and an obvious use case) I have bought. In fact, I am that amazed it wasn't taken it prompted this whole article!\n\nThe domain is:\n\na2z.dev\nI will be writing loads about that domain as it will feature heavily in my content creation strategy over the next year, but it had me thinking about all the domains I have bought over the years that maybe weren't as great!\n\nThen I realised I can't be the only one with random domains (or really good domains that you are surprised weren't taken) sat idle and needing a purpose!\n\nSo that leads me to the question:\n\nHow many of you have random domains with no purpose?\nAs I said I have several domains that are good (and some not so good ones!), but have no purpose at the moment.\n\nAnd I certainly can't be the only one.\n\nSo put your unused domain name into the comments below and I will come up with a fun project and possibly a serious project as well that you could build around that domain name!\n\nI want to see who has a) the best domain name (can you beat a2z.dev?) and b) the silliest domain name.\n\nHopefully a bit of fun coming up with ideas for how to use a domain name will turn into a silly side project, that then turns into something beautiful and massive, and we can all say that it started here and we helped make it happen! 😁\n\nAdd your domain name(s) below that you want a project for and I (and hopefully others) will come up with a killer idea!"
+// let ocurrencias = testtext.match(inputRegExp).length
+// console.log(ocurrencias)

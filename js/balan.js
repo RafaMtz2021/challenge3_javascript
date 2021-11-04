@@ -125,7 +125,7 @@ const ocurrences = (post) => {
 
 
 
-const matchedIDsArray = (array) => {
+const getMatchedIDsArray = (array) => {
     let idsArray = [];
     let formattedArray = getPostArrayStructure(array)
     formattedArray.forEach((post) => {
@@ -136,7 +136,7 @@ const matchedIDsArray = (array) => {
 
 
 // next line is for testing
-console.log(matchedIDsArray(testObjectsArray))
+// console.log(getMatchedIDsArray(testObjectsArray))
 
 
 
@@ -146,17 +146,25 @@ const getResponse = () => {
         method: 'GET',
         url: 'https://js-challenge-a0b1c-default-rtdb.firebaseio.com/.json',
         success: (response) => {
-            let objectedResponse = Object.entries(response);
-            console.log(response)
-            console.log(objectedResponse);
+
+            //next line is for testing //
+            console.log(response)  //ok
+            let objectedResponse = Object.entries(response); //ok
+
+            //next lines is for testing //
+            console.log(objectedResponse); //ok
+
+            /* next process (next two line) is included in the matchedIDsArray (delete next line)
+            when testing finish */
             let postStructure = getPostArrayStructure(objectedResponse);
+
+            //next line is for testing //
             console.log(postStructure);
 
-        // const alternResponseArray = getPostArrayStructure(responseArray);
-        // testObjectsArrayFiltered(alternResponseArray)
-        // let postsFromDB = Object.entries(response)
-        //   console.log(Object.entries(xhr)) 
-        // return (Object.entries(xhr))
+            let matchedIDs = getMatchedIDsArray(objectedResponse);
+            //next line is for testing
+            console.log(matchedIDs);
+
         },
         error: (error) => {
             console.log(error)
@@ -170,7 +178,7 @@ const getResponse = () => {
 
 
 // console.log(postsFromDB)
-// console.log(getResponse())
+console.log(getResponse())
 // console.log(Object.entries(getResponse()))
 
 searchButton.click(event => {

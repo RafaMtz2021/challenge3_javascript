@@ -92,89 +92,53 @@ const getPostArrayStructure = (array) => {
     return postArrayStructure;
 }
 
-let testStructure = getPostArrayStructure(testObjectsArray)
-console.log(getPostArrayStructure(testObjectsArray))
+// nex three lines is for testing getPostArrayStructure function
+// let arrayTest = getPostArrayStructure(testObjectsArray)
+// console.log(arrayTest)
+// console.log(arrayTest[0])
 
-// const filteredIDs = [];
 
-// count number of matches for a given string in the search-bar
-// ya funciona
-const ocurrencies = (post) => {
+const ocurrences = (post) => {
     let filteredIDs = [];
     const ocurreNum = post.reduce((counter, field) =>{
-        // console.log(field, counter)
-        // console.log(field.match(inputRegExp));
         if((field.match(inputRegExp)) != null){
             counter += (field.match(inputRegExp)).length
         }else if(field.matchAll(inputRegExp) == null){
              counter += 0
          }
-         
+        //  next commented line is for testing
+        //  console.log(field, field.match(inputRegExp), counter)
          return counter
         },0)
-        
+
+        // next commented line is for testing
+        // console.log(ocurreNum)
         if(ocurreNum !== 0){
-            return filteredIDs.push(post[0])
+            filteredIDs.push(post[0])
            }
     return filteredIDs;
     } 
-    
 
-// console.log(filteredIDs)
-// // let ocurrenciesTest = ocurrencies(arrayTest)
-// console.log(ocurrenciesTest)
 
+// next line is for testing ocurrences function
+// console.log((ocurrences(arrayTest[2])))
 
 
 
-const filteredArray = (array) => {
-
-   let newArray = array.forEach((post) => {
-
-        return ocurrencies(post)
-
+const matchedIDsArray = (array) => {
+    let idsArray = [];
+    let formattedArray = getPostArrayStructure(array)
+    formattedArray.forEach((post) => {
+        idsArray.push(...ocurrences(post))
     })
-
-    return console.log(newArray)
-    
+    return idsArray
 }
 
-let filteredIDs = filteredArray(testStructure)
 
-console.log(filteredIDs)
-
-
+// next line is for testing
+console.log(matchedIDsArray(testObjectsArray))
 
 
-// let arrayTest = getPostArrayStructure(testObjectsArray)[2]
-// console.log(arrayTest)
-
-// // ya funciona
-// const ocurrencies = (post) => {
-//     const ocurreNum = post.reduce((counter, field) =>{
-//         console.log(field, counter)
-//         console.log(field.match(inputRegExp));
-//         if((field.match(inputRegExp)) != null){
-//             counter += (field.match(inputRegExp)).length
-//         }else if(field.matchAll(inputRegExp) == null){
-//              counter += 0
-//          }
-//         return counter
-//     },0)
-
-//     return ocurreNum
-// } 
-
-// let ocurrenciesTest = ocurrencies(arrayTest)
-// console.log(ocurrenciesTest)
-
-
-
-// // testObjectsArrayFiltered(testObjectsArray)
-// // console.log(filteredIDs)
-
-
-// GET request to DB
 
 const getResponse = () => {
 
@@ -215,8 +179,3 @@ searchButton.click(event => {
 })
 
 
-
-
-// let testtext = "In a rush? Head down to the comments and share a domain name you own without a purpose, I (and hopefully some others) will give you a fun side project idea for it!\n\nFor those not in a rush!\nI own quite a few domain names. I recently wrote about my emoji domain 👩‍💻👨‍💻.to, I also own a domain name purely for the fact it sits on the million dollar homepage and is a part of internet history!\n\nI even bought a domain name a few years ago that I still think could be great for a codepen competitor - codersplayground.co.uk!\n\nOh and don't forget ultimatemot*******kingwebsite.com (Warning, do not click this link if swearing offends you), which is probably the naughtiest domain I own and actually use!\n\nToday, for the first time in a while, I bought a domain name that not only fit a big side project beautifully, but would also work for loads of different use cases.\n\nIt is probably the \"best\" (best when talking about commercial viability and an obvious use case) I have bought. In fact, I am that amazed it wasn't taken it prompted this whole article!\n\nThe domain is:\n\na2z.dev\nI will be writing loads about that domain as it will feature heavily in my content creation strategy over the next year, but it had me thinking about all the domains I have bought over the years that maybe weren't as great!\n\nThen I realised I can't be the only one with random domains (or really good domains that you are surprised weren't taken) sat idle and needing a purpose!\n\nSo that leads me to the question:\n\nHow many of you have random domains with no purpose?\nAs I said I have several domains that are good (and some not so good ones!), but have no purpose at the moment.\n\nAnd I certainly can't be the only one.\n\nSo put your unused domain name into the comments below and I will come up with a fun project and possibly a serious project as well that you could build around that domain name!\n\nI want to see who has a) the best domain name (can you beat a2z.dev?) and b) the silliest domain name.\n\nHopefully a bit of fun coming up with ideas for how to use a domain name will turn into a silly side project, that then turns into something beautiful and massive, and we can all say that it started here and we helped make it happen! 😁\n\nAdd your domain name(s) below that you want a project for and I (and hopefully others) will come up with a killer idea!"
-// let ocurrencias = testtext.match(inputRegExp).length
-// console.log(ocurrencias)

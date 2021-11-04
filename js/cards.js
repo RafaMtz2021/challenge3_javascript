@@ -201,10 +201,7 @@ $(document).ready( () => {
         
     }
     getInfoPost();
-<<<<<<< HEAD
-=======
     
->>>>>>> createCardsMain
 });
 
 

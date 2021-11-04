@@ -11,10 +11,12 @@ const searchButton = $(".btn-sucess");
 
 
 //adding listener to button
-searchButton.click(event => {
-    event.preventDefault()
-    console.log(searchValue)
-})
+// searchButton.click(event => {
+//     event.preventDefault()
+//     console.log(searchValue)
+// })
+
+
 
 
 // regular expression ready!
@@ -135,8 +137,9 @@ const getMatchedIDsArray = (array) => {
 }
 
 
-// next line is for testing
+// next line is for testing getMatchedIDsArray function
 // console.log(getMatchedIDsArray(testObjectsArray))
+
 
 
 
@@ -180,11 +183,14 @@ const getResponse = () => {
 // console.log(getResponse())
 
 //next line is for testing. Don't delete it!
-getResponse()
+
+let effectiveIDs = getResponse();
+console.log(effectiveIDs)
 
 searchButton.click(event => {
     
     event.preventDefault()
+    console.log(searchValue);
     getResponse()
 })
 

@@ -92,7 +92,7 @@ const getPostArrayStructure = (array) => {
     return postArrayStructure;
 }
 
-// nex three lines is for testing getPostArrayStructure function
+// next three lines are for testing getPostArrayStructure function
 // let arrayTest = getPostArrayStructure(testObjectsArray)
 // console.log(arrayTest)
 // console.log(arrayTest[0])
@@ -148,18 +148,18 @@ const getResponse = () => {
         success: (response) => {
 
             //next line is for testing //
-            console.log(response)  //ok
+            // console.log(response)  //ok
             let objectedResponse = Object.entries(response); //ok
 
             //next lines is for testing //
-            console.log(objectedResponse); //ok
+            // console.log(objectedResponse); //ok
 
             /* next process (next two line) is included in the matchedIDsArray (delete next line)
             when testing finish */
-            let postStructure = getPostArrayStructure(objectedResponse);
+            // let postStructure = getPostArrayStructure(objectedResponse);
 
             //next line is for testing //
-            console.log(postStructure);
+            // console.log(postStructure);
 
             let matchedIDs = getMatchedIDsArray(objectedResponse);
             //next line is for testing
@@ -176,14 +176,16 @@ const getResponse = () => {
 
 }
 
+//next line is for testing
+// console.log(getResponse())
 
-// console.log(postsFromDB)
-console.log(getResponse())
-// console.log(Object.entries(getResponse()))
+//next line is for testing. Don't delete it!
+getResponse()
 
 searchButton.click(event => {
+    
     event.preventDefault()
-    console.log(getResponse())
+    getResponse()
 })
 
 

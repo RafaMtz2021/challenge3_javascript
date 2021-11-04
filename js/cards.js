@@ -4,12 +4,12 @@ $(document).ready( () => {
     //Builds a card in DOM
     const createCard = (index,id,title,url,tags,likes,date) =>{
         const father = $('.main__body');
-        console.log(father);
+        //console.log(father);
         //img
         const cardContainer = document.createElement('div');
         cardContainer.className = 'card rounded-3 mb-2';
         cardContainer.id = id;
-        console.log(cardContainer);
+        //console.log(cardContainer);
         const cardImage = document.createElement('img');
         //Display url image only if index = 0
         if(index === 0){
@@ -26,7 +26,7 @@ $(document).ready( () => {
         linkAvatar.href = '#';
         linkAvatar.className = 'row p-0 m-0 w-75';
         const imgAvatar = document.createElement('img');
-        imgAvatar.className = 'rounded-circle p-0';
+        imgAvatar.className = 'rounded-circle p-1';
         imgAvatar.width='140';
         imgAvatar.height='50';
         imgAvatar.src = `./img/people${index}.png`;
@@ -167,6 +167,40 @@ $(document).ready( () => {
         $(father).append(cardContainer);
     }
 
+    const getInfoPost = () => {
+        $.ajax({
+            method: 'GET',
+            url: 'https://js-challenge-a0b1c-default-rtdb.firebaseio.com/.json',
+            
+            success: (response) =>{
+                // callback cuando la petición es exitosa
+                console.log(response)
+                //const person = JSON.parse(response)
+                const arrayPost = Object.entries(response);
+                //console.log(arrayPost);
+
+                arrayPost.forEach((item,index)=>{
+                    const postIndex = index;
+                    const postId = item[0];
+                    const postTitle = item[1].title;
+                    const postUrl = item[1].url;
+                    const postTags = item[1].tags.map(tag=>{
+                        return tag;
+                    });
+                    const postLikes = item[1].likes;
+                    const protoDate = item[1].date;
+                    createCard(postIndex,postId,postTitle,postUrl,postTags,postLikes,protoDate);
+                });
+            },
+            error: (error) => {
+                // callback para cuando hay un error
+                console.log(error)
+            },
+            async: true,
+        });
+        
+    }
+    getInfoPost();
     
 });
 

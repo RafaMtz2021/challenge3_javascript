@@ -18,13 +18,13 @@ searchButton.click(event => {
 
 
 // regular expression ready!
-let re1 = /`${searchValue}`/gi
+// let re1 = /`${searchValue}`/gi
 
 // console.log(re1)
 let inputRegExp = new RegExp(searchValue, 'gi');    // this works good!
 console.log(inputRegExp)
 
-let re3 = /adasdfas/gi
+// let re3 = /adasdfas/gi
 // console.log(re3, typeof(r2))
 
 

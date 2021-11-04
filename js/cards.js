@@ -167,6 +167,7 @@ $(document).ready( () => {
         $(father).append(cardContainer);
     }
 
+    
 });
 
 

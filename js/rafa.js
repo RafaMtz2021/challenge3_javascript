@@ -1,5 +1,5 @@
 $(document).ready( ()=>{
-
+//Create Post
     $('#createPost').click( () => {
         const title = $.trim($("#title").val());
         const body = $.trim($("#body").val());
@@ -31,27 +31,6 @@ $(document).ready( ()=>{
         })
 
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 });

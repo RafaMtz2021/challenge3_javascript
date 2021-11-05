@@ -1112,29 +1112,31 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  width: 25%;
+  position: relative;
+  left: -75px;
 }
 
 .headMenu .post-options-container .txtSet {
   text-align: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   white-space: nowrap;
   font-size: 16px;
-  font-weight: 600;
-  color: black;
-  padding-top: 7px;
-  padding-left: 17px;
+  font-weight: 450;
+  color: #696969;
+  padding: 8px 5px 7px 5px;
   border-radius: 5px;
-  height: 40px;
-  width: 95px;
 }
 
 .headMenu .post-options-container .txtSet:hover {
   background-color: white;
   color: #2c38c0;
+  font-weight: 600;
 }
 
 #contMenu {

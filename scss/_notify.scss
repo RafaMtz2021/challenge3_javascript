@@ -19,26 +19,30 @@ body{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        width: 25%;
+        position: relative;
+        left: -75px;
 
 
         .txtSet{
             text-align: center;
-            justify-content:space-around;
+            justify-content:center;
             display: flex;
             white-space: nowrap;
             font-size: 16px;
-            font-weight: 600;
-            color: black;
-            padding-top: 7px;
-            padding-left: 17px;
+            font-weight: 450;
+            color: #696969;
+            padding: 8px 5px 7px 5px;
+            // padding-left: 17px;
             border-radius: 5px;
-            height: 40px;
-            width: 95px;
+            // height: 40px;
+            // width: 95px;
         }
     
         .txtSet:hover{
             background-color: white;
             color: $gralBlueHover;
+            font-weight: 600;
         }
     }
 

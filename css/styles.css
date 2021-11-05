@@ -1,7 +1,6 @@
 /*LeftSide Bar*/
 header {
   height: 56px;
-  width: 77px;
 }
 
 body {
@@ -19,7 +18,7 @@ body {
   z-index: 100;
   top: 0;
 }
-
+/* comment */
 .navbar_bar {
   padding: 0;
   margin: 0;
@@ -605,6 +604,21 @@ body {
   #lsBar {
     display: none;
   }
+}
+
+#title {
+  font-size: 60px;
+  font-weight: 500;
+}
+
+.btn {
+  width: 200px;
+}
+
+.edit {
+  margin-right: 100px;
+  border-bottom: 3px solid blue;
+  color: black;
 }
 
 .card_g_ar {
@@ -1196,4 +1210,3 @@ main {
 .notificationFooter {
   position: relative;
 }
-/*# sourceMappingURL=styles.css.map */

@@ -1,4 +1,5 @@
-// identifying search-bar (input-form)
+$(document).ready(() => {
+    // identifying search-bar (input-form)
 
 const searchBar = $(".form-control_bar");
 const searchValue = searchBar.val();
@@ -7,6 +8,8 @@ console.log(searchValue);
 
 //identifying search.button (button-object)
 const searchButton = $(".btn-sucess");
+// searchButton.attr('href', './pages/search.html')
+
 // console.log(searchButton);
 
 
@@ -193,5 +196,9 @@ searchButton.click(event => {
     console.log(searchValue);
     getResponse()
 })
+
+
+}
+)
 
 

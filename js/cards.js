@@ -7,7 +7,7 @@ $(document).ready( () => {
         //console.log(father);
         //img
         const cardContainer = document.createElement('div');
-        cardContainer.className = 'card rounded-3 mb-2';
+        cardContainer.className = 'card rounded-3 mb-2 elementToRemove';
         cardContainer.id = id;
         //console.log(cardContainer);
         const cardImage = document.createElement('img');
@@ -151,7 +151,7 @@ $(document).ready( () => {
         timeText.textContent = '6 min read';
         $(timeRead).append(timeText);
         const buttonDelete = document.createElement('button');
-        buttonDelete.className = 'btn btn-light border border-danger';
+        buttonDelete.className = 'btn btn-light border border-danger deleteCard';
         buttonDelete.textContent = 'Delete'
         $(timeRead).append(buttonDelete);
         //Appends
@@ -178,30 +178,89 @@ $(document).ready( () => {
                 //const person = JSON.parse(response)
                 const arrayPost = Object.entries(response);
                 //console.log(arrayPost);
-
-                arrayPost.forEach((item,index)=>{
-                    const postIndex = index;
-                    const postId = item[0];
-                    const postTitle = item[1].title;
-                    const postUrl = item[1].url;
-                    const postTags = item[1].tags.map(tag=>{
-                        return tag;
-                    });
-                    const postLikes = item[1].likes;
-                    const protoDate = item[1].date;
-                    createCard(postIndex,postId,postTitle,postUrl,postTags,postLikes,protoDate);
-                });
+                //Recorre array
+                checkArray(arrayPost);
+                //Eliminar Cards
+                deleteCard();
+                 //Efectos en los títulos de los filtros Feed/Latest
+                efectsTitles();
             },
             error: (error) => {
-                // callback para cuando hay un error
                 console.log(error)
             },
             async: true,
         });
-        
     }
     getInfoPost();
+
+    const deletePost = (id) => {
+
+        $.ajax({
+            type: "DELETE",
+            url: `https://js-challenge-a0b1c-default-rtdb.firebaseio.com/${id}.json`,
+            success: (response) => {
+                console.log(response)
+                location.reload();
+            },
+            error: (error) => {
+                console.log(error)
+            }
+        });   
+    }
+
+    const checkArray = (arrayPost) => {
+        arrayPost.map((item,index)=>{
+            const postIndex = index;
+            const postId = item[0];
+            const postTitle = item[1].title;
+            const postUrl = item[1].url;
+            const postTags = item[1].tags.map(tag=>{
+                return tag;
+            });
+            const postLikes = item[1].likes;
+            const protoDate = item[1].date;
+            createCard(postIndex,postId,postTitle,postUrl,postTags,postLikes,protoDate);
+            return;
+        });
+    }
+
+    const deleteCard = () => {
+        $('.deleteCard').click((e) => { 
+            const parentNode = e.target.parentNode.parentNode.parentNode.parentNode
+            alert('El Post será eliminado');
+            //console.log(parentNode.id)
+            parentNode.remove();
+            deletePost(parentNode.id);
+         });
+    }
+
+    const efectsTitles = () => {
+         //Efectos en los títulos de los filtros Feed/Latest
+         $('.headFilter').click((e) => {
+            console.log()
+            e.preventDefault();
+            const classLeft = '.headFilter'
+            $(classLeft).removeClass("headSelected");
+            const itemSelected = e.target
+            console.log(itemSelected.id);
+            $(itemSelected).addClass("headSelected")
+            if(itemSelected.id==='top' || itemSelected.id==='week' || itemSelected.id==='month' || itemSelected.id==='year'){
+                $('.topLinked').css('visibility','visible');
+            }else{
+                $('.topLinked').css('visibility','hidden');
+            }                  
+            
+         })
+        //Efectos en los títulos de los filtros Week/Month/Year
+        $('.headFilterByTime').click((e) => {
+           e.preventDefault();
+           const classRight = '.headFilterByTime'
+           $(classRight).removeClass("headSelected");
+           const itemSelectedRight = e.target
+           console.log(itemSelectedRight.id);
+           $(itemSelectedRight).addClass("headSelected");               
+        });
+    }
     
 });
-
 

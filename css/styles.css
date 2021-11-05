@@ -60,7 +60,6 @@ body {
   height: 30px;
   border-radius: 50%;
   border: transparent;
-  top: px;
   left: 90%;
 }
 
@@ -1102,10 +1101,30 @@ body {
   color: black;
 }
 
-.headMenu .txtSet {
+.headMenu .post-options-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.headMenu .post-options-container .txtSet {
+  text-align: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  white-space: nowrap;
   font-size: 16px;
   font-weight: 600;
-  color: #585555;
+  color: black;
   padding-top: 7px;
   padding-left: 17px;
   border-radius: 5px;
@@ -1113,9 +1132,9 @@ body {
   width: 95px;
 }
 
-.headMenu .txtSet:hover {
-  background-color: #e6e3e3;
-  color: black;
+.headMenu .post-options-container .txtSet:hover {
+  background-color: white;
+  color: #2c38c0;
 }
 
 #contMenu {

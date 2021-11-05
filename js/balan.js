@@ -8,9 +8,10 @@ console.log(searchValue);
 
 //identifying search.button (button-object)
 const searchButton = $(".btn-sucess");
-// searchButton.attr('href', './pages/search.html')
-
 // console.log(searchButton);
+
+const searchResultsNotif = $(".txtNotif");
+console.log(searchResultsNotif); 
 
 
 //adding listener to button

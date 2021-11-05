@@ -18,7 +18,7 @@ body {
   z-index: 100;
   top: 0;
 }
-
+/* comment */
 .navbar_bar {
   padding: 0;
   margin: 0;
@@ -1210,4 +1210,3 @@ main {
 .notificationFooter {
   position: relative;
 }
-/*# sourceMappingURL=styles.css.map */

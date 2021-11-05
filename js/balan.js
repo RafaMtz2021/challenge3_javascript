@@ -20,9 +20,6 @@ console.log(searchResultsNotif);
 //     console.log(searchValue)
 // })
 
-
-
-
 // regular expression ready!
 // let re1 = /`${searchValue}`/gi
 
@@ -32,7 +29,6 @@ console.log(inputRegExp)
 
 // let re3 = /adasdfas/gi
 // console.log(re3, typeof(r2))
-
 
 // test array for testing
 let testObjectsArray = [[

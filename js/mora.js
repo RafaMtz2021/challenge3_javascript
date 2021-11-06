@@ -150,8 +150,30 @@ $(document).ready( () => {
         const buttonUpdate = document.createElement('button');
         // buttonUpdate.data('id', 'fsdfds');
         buttonUpdate.className = 'btn btn-light border border-success';
-        buttonUpdate.textContent = 'Update'
+        buttonUpdate.id= 'someCrazyButton';
+        buttonUpdate.textContent = 'Update';
         $(timeRead).append(buttonUpdate);
+
+        //EVENT LISTENERS
+        buttonUpdate.addEventListener('click', function() {
+            //INPUT
+            let input = document.createElement("input");
+            input.type = "text";
+            input.className = "css-class-name"; 
+            $(input).val(title);
+            $(cardBody).append(input);
+
+            buttonUpdate.remove();
+            //SAVE
+            const buttonSave = document.createElement('button');
+            // buttonSave.data('id', 'fsdfds');
+            buttonSave.className = 'btn btn-light border border-success';
+            buttonSave.id= 'someCrazyButton';
+            buttonSave.textContent = 'Save';
+            $(timeRead).append(buttonSave);
+        }, false);
+
+        
         //Appends
         $(elementContainer).append(linkReaction);
         $(elementContainer).append(linkComment);
@@ -192,6 +214,11 @@ $(document).ready( () => {
         });
         
     }
-    getInfoPostByID('-MnkicqxKrCzTC4WsccF')
+    getInfoPostByID('-Mnl7-KeLSaTPEN2FRj2')
 
+
+    // $('#someCrazyButton').click(function(){
+    //     //Some code
+    //     console.log('clickeado');
+    // });
 });

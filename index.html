@@ -97,7 +97,7 @@
                                 <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                     <span class="avatar_bar">
-                                        <img class="avatar_image" alt="" id="nav-profile-image" src="/img/avatar.png">
+                                        <img class="avatar_image" alt="" id="nav-profile-image" src="/img/people11.png">
                                     </span>
                                 </a>
                                 <ul class="dropdown-menu menu-user" aria-labelledby="navbarDropdown">
@@ -647,11 +647,16 @@
                 </div>
                 <!-- Main body -->
                 <div class="col-lg-6 col-md-6 col-sm-10 main__body">
-                    <nav>
+                    <nav class="d-flex justify-content-between ">
                         <ul class="d-flex ms-3">
-                            <li><a href="#" class="li-select fw-bolder me-3 text-dark">Feed</a></li>
-                            <li><a href="#" class="me-3 text-dark">Latest</a></li>
-                            <li><a href="#" class="text-dark">Top</a></li>
+                            <li><a href="#" class="li-select me-3 text-dark headFilter headSelected" id="feed">Feed</a></li>
+                            <li><a href="#" class="me-3 text-dark headFilter" id="latest">Latest</a></li>
+                            <li><a href="#" class="text-dark headFilter" id="top">Top</a></li>
+                        </ul>
+                        <ul class="d-flex ms-3 topLinked">
+                            <li><a href="#" class="li-select me-3 text-dark headFilterByTime headSelected" id="week">Week</a></li>
+                            <li><a href="#" class="me-3 text-dark headFilterByTime" id="month">Month</a></li>
+                            <li><a href="#" class="text-dark headFilterByTime" id="year">Year</a></li>
                         </ul>
                     </nav>
 
@@ -895,6 +900,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./js/balan.js"></script>
     <script src="./js/cards.js"></script>
+    <script src="./js/delete.js"></script>
 </body>
 
 </html>

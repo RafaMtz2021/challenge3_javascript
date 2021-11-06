@@ -177,13 +177,12 @@ $(document).ready( () => {
                 console.log(response)
                 //const person = JSON.parse(response)
                 const arrayPost = Object.entries(response);
-                //console.log(arrayPost);
                 //Recorre array
                 checkArray(arrayPost);
                 //Eliminar Cards
                 deleteCard();
                  //Efectos en los títulos de los filtros Feed/Latest
-                efectsTitles();
+                efectsTitles(arrayPost);
             },
             error: (error) => {
                 console.log(error)
@@ -221,7 +220,8 @@ $(document).ready( () => {
             const protoDate = item[1].date;
             createCard(postIndex,postId,postTitle,postUrl,postTags,postLikes,protoDate);
             return;
-        });
+        })
+        return;
     }
 
     const deleteCard = () => {
@@ -234,32 +234,81 @@ $(document).ready( () => {
          });
     }
 
-    const efectsTitles = () => {
+    const efectsTitles = (array) => {
          //Efectos en los títulos de los filtros Feed/Latest
          $('.headFilter').click((e) => {
-            console.log()
             e.preventDefault();
             const classLeft = '.headFilter'
             $(classLeft).removeClass("headSelected");
             const itemSelected = e.target
             console.log(itemSelected.id);
+
+            if(itemSelected.id==='latest'){
+                filterByCriteria(array,'latest')
+            }else if(itemSelected.id==='feed'){
+                location.reload()
+            }
+
             $(itemSelected).addClass("headSelected")
+
             if(itemSelected.id==='top' || itemSelected.id==='week' || itemSelected.id==='month' || itemSelected.id==='year'){
                 $('.topLinked').css('visibility','visible');
             }else{
                 $('.topLinked').css('visibility','hidden');
             }                  
-            
-         })
+         });
         //Efectos en los títulos de los filtros Week/Month/Year
         $('.headFilterByTime').click((e) => {
            e.preventDefault();
            const classRight = '.headFilterByTime'
            $(classRight).removeClass("headSelected");
            const itemSelectedRight = e.target
-           console.log(itemSelectedRight.id);
-           $(itemSelectedRight).addClass("headSelected");               
+           //console.log(itemSelectedRight.id);
+           $(itemSelectedRight).addClass("headSelected");
+
+        //    if(itemSelectedRight.id==='week'){
+        //         filterByCriteria(array,'week');
+        //    }else if(itemSelectedRight.id==='month'){
+        //         filterByCriteria(array,'month');
+        //    }else if(itemSelectedRight.id==='year'){
+        //         filterByCriteria(array,'year');
+        //    }
+                
         });
+    }
+
+    const filterByCriteria = (array,criteria) => {
+        //Limpia el DOM excepto el primer hijo
+        $('.main__body').children().not(':first').remove();
+    
+            switch (criteria) {
+                case 'latest':
+                    //console.log(sortByTime())
+                    //const result = sortByTime()
+                    checkArray(sortByTime()) //Esta bien, pero hay que limpiar el DOM antes y despues desplegarlos
+                    break;
+                case 'week':
+                    sortByWeek();
+                    break;
+                case 'month':
+                    sortByMonth();
+                    break;
+                case 'year':
+                    sortByYear();
+                    break;
+            }
+     
+        function sortByTime() {
+            return array.sort((post, otherPost) => {
+                if (post[1].date > otherPost[1].date) {
+                  return -1;
+                }
+                if (post[1].date < otherPost[1].date) {
+                  return 1;
+                }
+                return 0;
+            });
+        }
     }
     
 });

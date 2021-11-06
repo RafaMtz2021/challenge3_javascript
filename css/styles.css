@@ -18,7 +18,7 @@ body {
   z-index: 100;
   top: 0;
 }
-/* comment */
+
 .navbar_bar {
   padding: 0;
   margin: 0;
@@ -846,6 +846,22 @@ div .card_link_ar {
   width: auto;
   color: #575757;
   font-weight: 400;
+}
+
+.main__body .headFilter:hover {
+  background: #e6e3e3;
+}
+
+.main__body .headFilterByTime:hover {
+  background: #e6e3e3;
+}
+
+.main__body .headSelected {
+  font-weight: bolder;
+}
+
+.main__body .topLinked {
+  visibility: hidden;
 }
 
 * {

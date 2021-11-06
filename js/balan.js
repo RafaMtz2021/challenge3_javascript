@@ -4,8 +4,8 @@ $(document).ready(() => {
 // next line defines object where string is typed
 const searchBar = $(".form-control_bar");
 // next line is to get the string typed
-const searchValue = searchBar.val();
-console.log(searchValue);
+// const searchValue = searchBar.val();
+// console.log("prueba searchValue: ", searchValue);
 
 
 //identifying search.button (button-object)
@@ -18,6 +18,10 @@ const searchButton = $(".icon-container");
 // console.log(searchResultsNotif); 
 
 
+// let inputRegExp = new RegExp(searchValue, 'gi');
+// console.log(inputRegExp)
+
+
 //adding listener to button
 // searchButton.click(event => {
 //     event.preventDefault()
@@ -28,8 +32,6 @@ const searchButton = $(".icon-container");
 // let re1 = /`${searchValue}`/gi
 
 // console.log(re1)
-let inputRegExp = new RegExp(searchValue, 'gi');    // this works good!
-console.log(inputRegExp)
 
 // let re3 = /adasdfas/gi
 // console.log(re3, typeof(r2))
@@ -57,74 +59,75 @@ const getPostArrayStructure = (array) => {
 // console.log(arrayTest[0])
 
 
-const ocurrences = (post) => {
+const ocurrences = (post, searchValue) => {
     let filteredIDs = [];
+    let inputRegExp = new RegExp(searchValue, 'gi');
     const ocurreNum = post.reduce((counter, field) =>{
         if((field.match(inputRegExp)) != null){
             counter += (field.match(inputRegExp)).length
         }else if(field.matchAll(inputRegExp) == null){
-             counter += 0
-         }
+            counter += 0
+        }
         //  next commented line is for testing
         //  console.log(field, field.match(inputRegExp), counter)
          return counter
         },0)
-
+        
         // next commented line is for testing
         // console.log(ocurreNum)
         if(ocurreNum !== 0){
             filteredIDs.push(post[0])
-           }
-    return filteredIDs;
+        }
+        return filteredIDs;
     } 
-
-
-// next line is for testing ocurrences function
-// console.log((ocurrences(arrayTest[2])))
-
-
-
-const getMatchedIDsArray = (array) => {
-    let idsArray = [];
-    let formattedArray = getPostArrayStructure(array)
-    formattedArray.forEach((post) => {
-        idsArray.push(...ocurrences(post))
-    })
-    return idsArray
-}
-
-
-// next line is for testing getMatchedIDsArray function
-// console.log(getMatchedIDsArray(testObjectsArray))
-
-
-
-
-const getResponse = () => {
-
-    const requestInfo = {
-        method: 'GET',
-        url: 'https://js-challenge-a0b1c-default-rtdb.firebaseio.com/.json',
-        success: (response) => {
-
-            //next line is for testing //
-            // console.log(response)  //ok
+    
+    
+    // next line is for testing ocurrences function
+    // console.log((ocurrences(arrayTest[2])))
+    
+    
+    
+    const getMatchedIDsArray = (array, searchValue) => {
+        let idsArray = [];
+        let formattedArray = getPostArrayStructure(array)
+        formattedArray.forEach((post) => {
+            idsArray.push(...ocurrences(post, searchValue ))
+        })
+        return idsArray
+    }
+    
+    
+    // next line is for testing getMatchedIDsArray function
+    // console.log(getMatchedIDsArray(testObjectsArray))
+    
+    
+    
+    
+    const getResponse = (searchValue) => {
+        
+        const requestInfo = {
+            method: 'GET',
+            url: 'https://js-challenge-a0b1c-default-rtdb.firebaseio.com/.json',
+            success: (response) => {
+                
+                //next line is for testing //
+                // console.log(response)  //ok
             let objectedResponse = Object.entries(response); //ok
-
+            
             //next lines is for testing //
             // console.log(objectedResponse); //ok
-
+            
             /* next process (next two line) is included in the matchedIDsArray (delete next line)
             when testing finish */
             // let postStructure = getPostArrayStructure(objectedResponse);
-
+            
             //next line is for testing //
             // console.log(postStructure);
-
-            let matchedIDs = getMatchedIDsArray(objectedResponse);
+            
+            let matchedIDs = getMatchedIDsArray(objectedResponse, searchValue);
             //next line is for testing
             console.log(matchedIDs);
-
+            
         },
         error: (error) => {
             console.log(error)
@@ -133,7 +136,7 @@ const getResponse = () => {
     }
     
     return $.ajax(requestInfo)
-
+    
 }
 
 //next line is for testing
@@ -143,16 +146,62 @@ const getResponse = () => {
 // let effectiveIDs = getResponse();
 // console.log(effectiveIDs)
 
+const lupita = $("#lupa")
+//url:= ` ./index.html?nombre_De_variable = ${searchValue}`
+
+
+
+//---------------------------- ESTE BLOQUE ESTÁ BIEN. REGRESAR A ÉL SI EL PARAMS FALLA ------------
+// searchButton.click(event => {
+//     const searchValue = searchBar.val();
+//     if(searchValue.length !== 0){
+//         event.preventDefault() 
+//         console.log(searchValue)
+//         getResponse(searchValue)
+//         $(location).attr("href", `./pages/search.html?search = ${searchValue}`)
+        
+//     }
+// })
+
+
 searchButton.click(event => {
-    
-    event.preventDefault() 
-    // $(searchValue).attr('value', searchBar.val())
-    console.log(searchValue);
-    getResponse()
-    console.log(searchValue)
-    // $(location).attr("href","./pages/search.html")
-    console.log(searchValue)
+    const searchValue = searchBar.val();
+    if(searchValue.length !== 0){      
+        event.preventDefault() 
+        console.log(searchValue)
+        getResponse(searchValue)
+
+        const queryString = `search = ${searchValue}`
+        $(location).attr("href", `./pages/search.html?queryString`)
+        // const queryString = window.location.search;
+        console.log(queryString)
+        const urlParams = new URLSearchParams(queryString)
+        
+    }
 })
+
+searchBar.keypress(event => {
+    
+    const searchValue = searchBar.val();
+    if(event.which == 13 && searchValue.length !== 0){
+
+        // let inputRegExp = new RegExp(searchValue, 'gi');
+        event.preventDefault() 
+        // $(searchValue).attr('value', searchBar.val())
+        // console.log(searchValue)
+        // let inputRegExp = new RegExp(searchValue, 'gi');    // this works good!
+        // console.log(searchValue);
+        // console.log(inputRegExp)
+        console.log(searchValue)
+        getResponse(searchValue)
+        $(location).attr("href","./pages/search.html")
+
+    }
+
+
+    
+})
+
 
 
 }

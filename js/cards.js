@@ -226,6 +226,7 @@ $(document).ready( () => {
 
     const deleteCard = () => {
         $('.deleteCard').click((e) => { 
+            console.log(e)
             const parentNode = e.target.parentNode.parentNode.parentNode.parentNode
             alert('El Post será eliminado');
             //console.log(parentNode.id)
@@ -296,6 +297,8 @@ $(document).ready( () => {
                 filterByRange(365);
                 break;
         }
+
+        deleteCard();
      
         function sortByTime() {
             return array.sort((post, otherPost) => {

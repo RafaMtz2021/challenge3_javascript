@@ -875,6 +875,22 @@ div .card_link_ar {
   font-weight: 400;
 }
 
+.main__body .headFilter:hover {
+  background: #e6e3e3;
+}
+
+.main__body .headFilterByTime:hover {
+  background: #e6e3e3;
+}
+
+.main__body .headSelected {
+  font-weight: bolder;
+}
+
+.main__body .topLinked {
+  visibility: hidden;
+}
+
 * {
   text-decoration: none;
   list-style: none;

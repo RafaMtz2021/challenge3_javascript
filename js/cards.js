@@ -241,7 +241,7 @@ $(document).ready( () => {
             const classLeft = '.headFilter'
             $(classLeft).removeClass("headSelected");
             const itemSelected = e.target
-            console.log(itemSelected.id);
+            //console.log(itemSelected.id);
 
             if(itemSelected.id==='latest'){
                 filterByCriteria(array,'latest')
@@ -253,6 +253,7 @@ $(document).ready( () => {
 
             if(itemSelected.id==='top' || itemSelected.id==='week' || itemSelected.id==='month' || itemSelected.id==='year'){
                 $('.topLinked').css('visibility','visible');
+                filterByCriteria(array,'week');
             }else{
                 $('.topLinked').css('visibility','hidden');
             }                  
@@ -263,7 +264,7 @@ $(document).ready( () => {
            const classRight = '.headFilterByTime'
            $(classRight).removeClass("headSelected");
            const itemSelectedRight = e.target
-           console.log(itemSelectedRight.id);
+           //console.log(itemSelectedRight.id);
            $(itemSelectedRight).addClass("headSelected");
 
            if(itemSelectedRight.id==='week'){
@@ -325,10 +326,12 @@ $(document).ready( () => {
             actualDate.setDate(actualDate.getDate() - range);
 
             const referenceDate = actualDate.toISOString().split('T')[0];
-            arrLikes.forEach((post,index)=>{
+            let counter = 0;
+            arrLikes.forEach((post)=>{
+                
                 if(post[1].date >= referenceDate){
-                    const postIndex = index;
-                    console.log(index)
+                    const postIndex = counter;
+                    counter ++
                     const postId = post[0];
                     const postTitle = post[1].title;
                     const postUrl = post[1].url;

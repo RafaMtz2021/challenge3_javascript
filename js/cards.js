@@ -173,15 +173,15 @@ $(document).ready( () => {
             url: 'https://js-challenge-a0b1c-default-rtdb.firebaseio.com/.json',
             
             success: (response) =>{
-                // callback cuando la petición es exitosa
+                // callback when request succesful
                 console.log(response)
-                //const person = JSON.parse(response)
+
                 const arrayPost = Object.entries(response);
-                //Recorre array
+                //Read array
                 checkArray(arrayPost);
-                //Eliminar Cards
+                //Delete Cards
                 deleteCard();
-                 //Efectos en los títulos de los filtros Feed/Latest
+                 //Title effects of filters Feed/Latest
                 efectsTitles(arrayPost);
             },
             error: (error) => {
@@ -235,7 +235,7 @@ $(document).ready( () => {
     }
 
     const efectsTitles = (array) => {
-         //Efectos en los títulos de los filtros Feed/Latest
+         //Title effects of filters Feed/Latest
          $('.headFilter').click((e) => {
             e.preventDefault();
             const classLeft = '.headFilter'
@@ -257,46 +257,44 @@ $(document).ready( () => {
                 $('.topLinked').css('visibility','hidden');
             }                  
          });
-        //Efectos en los títulos de los filtros Week/Month/Year
+        //Title effects of filters Week/Month/Year
         $('.headFilterByTime').click((e) => {
            e.preventDefault();
            const classRight = '.headFilterByTime'
            $(classRight).removeClass("headSelected");
            const itemSelectedRight = e.target
-           //console.log(itemSelectedRight.id);
+           console.log(itemSelectedRight.id);
            $(itemSelectedRight).addClass("headSelected");
 
-        //    if(itemSelectedRight.id==='week'){
-        //         filterByCriteria(array,'week');
-        //    }else if(itemSelectedRight.id==='month'){
-        //         filterByCriteria(array,'month');
-        //    }else if(itemSelectedRight.id==='year'){
-        //         filterByCriteria(array,'year');
-        //    }
+           if(itemSelectedRight.id==='week'){
+                filterByCriteria(array,'week');
+           }else if(itemSelectedRight.id==='month'){
+                filterByCriteria(array,'month');
+           }else if(itemSelectedRight.id==='year'){
+                filterByCriteria(array,'year');
+           }
                 
         });
     }
 
     const filterByCriteria = (array,criteria) => {
-        //Limpia el DOM excepto el primer hijo
+        //Clean DOM except first child
         $('.main__body').children().not(':first').remove();
-    
-            switch (criteria) {
-                case 'latest':
-                    //console.log(sortByTime())
-                    //const result = sortByTime()
-                    checkArray(sortByTime()) //Esta bien, pero hay que limpiar el DOM antes y despues desplegarlos
-                    break;
-                case 'week':
-                    sortByWeek();
-                    break;
-                case 'month':
-                    sortByMonth();
-                    break;
-                case 'year':
-                    sortByYear();
-                    break;
-            }
+        const arrLikes = sortByLikes();
+        switch (criteria) {
+            case 'latest':
+                checkArray(sortByTime());
+                break;
+            case 'week':                    
+                filterByRange(7);
+                break;
+            case 'month':
+                filterByRange(31);
+                break;
+            case 'year':
+                filterByRange(365);
+                break;
+        }
      
         function sortByTime() {
             return array.sort((post, otherPost) => {
@@ -307,6 +305,40 @@ $(document).ready( () => {
                   return 1;
                 }
                 return 0;
+            });
+        }
+
+        function sortByLikes() {
+            return array.sort((post, otherPost) => {
+                if (post[1].likes > otherPost[1].likes) {
+                  return -1;
+                }
+                if (post[1].likes < otherPost[1].likes) {
+                  return 1;
+                }
+                return 0;
+            });
+        }
+
+        function filterByRange(range) {
+            const actualDate = new Date();
+            actualDate.setDate(actualDate.getDate() - range);
+
+            const referenceDate = actualDate.toISOString().split('T')[0];
+            arrLikes.forEach((post,index)=>{
+                if(post[1].date >= referenceDate){
+                    const postIndex = index;
+                    console.log(index)
+                    const postId = post[0];
+                    const postTitle = post[1].title;
+                    const postUrl = post[1].url;
+                    const postTags = post[1].tags.map(tag=>{
+                        return tag;
+                    });
+                    const postLikes = post[1].likes;
+                    const protoDate = post[1].date;
+                    createCard(postIndex,postId,postTitle,postUrl,postTags,postLikes,protoDate);
+                }
             });
         }
     }

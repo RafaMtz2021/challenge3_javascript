@@ -183,6 +183,8 @@ $(document).ready( () => {
                 deleteCard();
                  //Title effects of filters Feed/Latest
                 efectsTitles(arrayPost);
+                //filter by search criteria
+                filterBySearchButton(arrayPost);
             },
             error: (error) => {
                 console.log(error)
@@ -223,6 +225,38 @@ $(document).ready( () => {
         })
         return;
     }
+
+    const filterBySearchButton = (arrayPost) =>{
+        $('.btn-sucess').click((e) => { 
+            const criteriaSearch = $.trim($('.form-control_bar').val().toLowerCase())
+            let counter = 0;
+            arrayPost.forEach(item=>{
+                if(criteriaSearch != ''){
+                    console.log('hay algo')
+                    let titlePost = item[1].title.toLowerCase();
+                    if(titlePost.includes(criteriaSearch)){
+                        $('.main__body').children().not(':first').remove();
+                        const postIndex = counter;
+                        counter ++
+                        const postId = item[0];
+                        const postTitle = item[1].title;
+                        const postUrl = item[1].url;
+                        const postTags = item[1].tags.map(tag=>{
+                            return tag;
+                        });
+                        const postLikes = item[1].likes;
+                        const protoDate = item[1].date;
+                        createCard(postIndex,postId,postTitle,postUrl,postTags,postLikes,protoDate);
+                    }
+                }
+            })
+            if(counter===0 && criteriaSearch != ''){
+                console.log('No hay coincidencias');
+                alert('There are no post with that criteria, try with other word')
+            }
+        });
+    }
+    
 
     const deleteCard = () => {
         $('.deleteCard').click((e) => { 
@@ -348,6 +382,5 @@ $(document).ready( () => {
             });
         }
     }
-    
 });
 

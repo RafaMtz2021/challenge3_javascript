@@ -194,7 +194,7 @@ searchBar.keypress(event => {
         // console.log(inputRegExp)
         console.log(searchValue)
         getResponse(searchValue)
-        $(location).attr("href","./pages/search.html")
+        $(location).attr("href","../pages/search.html")
 
     }
 

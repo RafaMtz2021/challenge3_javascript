@@ -278,13 +278,13 @@ const ocurrences = (post, searchValue) => {
 
     //function to storage matchedIDs Array
 
-    const storeData = (array) => {
+    const storeData = (data) => {
 
         // store array or variable
-        sessionStorage.setItem("matchedIDs", JSON.stringify(array));
+        sessionStorage.setItem("searchValue", data);
 
         //redirect (insert a string)
-        // .location.href = newPage
+        // window.location = newPage
 
     }
 
@@ -292,7 +292,7 @@ const ocurrences = (post, searchValue) => {
     //function to get data in the redirected page
 
     const getPassedData = () => {
-        let passedData = JSON.parse(sessionStorage.getItem("matchedIDs"))
+        let passedData = sessionStorage.getItem("searchValue")
         return passedData
     }
 
@@ -345,52 +345,40 @@ const ocurrences = (post, searchValue) => {
             //next line is for testing
             console.log(matchedIDs);
             
-            storeData(matchedIDs)
-
-            window.open("./pages/search.html")
-            window.location.href ="./pages/search.html"
-
-            console.log(window.location)
+            storeData(matchedIDs, "./pages/search.html")
 
             //---------- here begins content of search-page ---
 
-            $(document).ready(()=>{
+            console.log("in search.html now")
 
+            const passedData = getPassedData()
+            console.log(passedData)
 
-
-                console.log(`in ${window.location} now`)
-
-                const passedData = getPassedData()
-                console.log(passedData)
-    
-                const filteredArrayPost = objectedResponse.filter((post) => {
-                    if(passedData.includes(post[0]))
-                    return post
-                })
-    
-                console.log(filteredArrayPost)
-                
-                // const postsToRender = filteredArrayPost(objectedResponse, passedData)
-                // console.log(postsToRender[0])
-                
-                filteredArrayPost.forEach((item,index)=>{
-                    const postIndex = index;
-                    const postId = item[0];
-                    const postTitle = item[1].title;
-                    console.log(postTitle)
-                    const postUrl = item[1].url;
-                    const postTags = item[1].tags.map(tag=>{
-                        return tag;
-                    });
-                    console.log(postTags)
-                    const postLikes = item[1].likes;
-                    const protoDate = item[1].date;
-                    createCard(postIndex,postId,postTitle,postUrl,postTags,postLikes,protoDate);
-                });
-
-
-
+            const filteredArrayPost = objectedResponse.filter((post) => {
+                if(passedData.includes(post[0]))
+                return post
             })
+
+            console.log(filteredArrayPost)
+            
+            // const postsToRender = filteredArrayPost(objectedResponse, passedData)
+            // console.log(postsToRender[0])
+            
+            filteredArrayPost.forEach((item,index)=>{
+                const postIndex = index;
+                const postId = item[0];
+                const postTitle = item[1].title;
+                console.log(postTitle)
+                const postUrl = item[1].url;
+                const postTags = item[1].tags.map(tag=>{
+                    return tag;
+                });
+                console.log(postTags)
+                const postLikes = item[1].likes;
+                const protoDate = item[1].date;
+                createCard(postIndex,postId,postTitle,postUrl,postTags,postLikes,protoDate);
+            });
+
 
             
             // console.log("in search.html now")
@@ -455,7 +443,30 @@ searchButton.click(event => {
     if(searchValue.length !== 0){
         event.preventDefault() 
         console.log(searchValue)
-        getResponse(searchValue)
+
+        storeData(searchValue)
+
+        location.href = "./pages/search.html"
+
+        console.log(window.location)
+
+
+        $(document).ready(()=>{
+
+
+
+
+
+            const query = getPassedData()
+            console.log(query)
+            console.log(window.location)
+    
+    
+    
+            getResponse(query)
+
+        })
+
         // $(location).attr("href", `./pages/search.html?search = ${searchValue}`)
         
     }

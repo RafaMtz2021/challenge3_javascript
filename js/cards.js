@@ -230,12 +230,16 @@ $(document).ready( () => {
         $('.btn-sucess').click((e) => { 
             const criteriaSearch = $.trim($('.form-control_bar').val().toLowerCase())
             let counter = 0;
+            if(criteriaSearch != ''){
+                $('.main__body').children().not(':first').remove();
+            }
             arrayPost.forEach(item=>{
                 if(criteriaSearch != ''){
-                    console.log('hay algo')
+                    //console.log('hay algo')
+                    
                     let titlePost = item[1].title.toLowerCase();
                     if(titlePost.includes(criteriaSearch)){
-                        $('.main__body').children().not(':first').remove();
+                        
                         const postIndex = counter;
                         counter ++
                         const postId = item[0];
@@ -253,6 +257,7 @@ $(document).ready( () => {
             if(counter===0 && criteriaSearch != ''){
                 console.log('No hay coincidencias');
                 alert('There are no post with that criteria, try with other word')
+                location.reload()
             }
         });
     }

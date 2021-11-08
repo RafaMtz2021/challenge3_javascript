@@ -227,7 +227,7 @@ $(document).ready( () => {
     }
 
     const filterBySearchButton = (arrayPost) =>{
-        $('.btn-sucess').click((e) => { 
+        $('.button-container').click((e) => { 
             const criteriaSearch = $.trim($('.form-control_bar').val().toLowerCase())
             let counter = 0;
             if(criteriaSearch != ''){

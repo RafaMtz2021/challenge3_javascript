@@ -1,4 +1,6 @@
 $(document).ready( () => {
+
+    //next lines are hard code
     const names = ['Nitin Ranganath','Souza, Matheus','Drew Pellum','Iacovos Constantinou','CodeWatchers','Dima Grossman','Dorthy Thielsen','Lambda Technology Inc','ADESANYA JOSHUA AYODEJI','Nitin Ranganath','Souza, Matheus','Drew Pellum','Iacovos Constantinou','CodeWatchers','Dima Grossman','Dorthy Thielsen','Lambda Technology Inc','ADESANYA JOSHUA AYODEJI','Nitin Ranganath','Souza, Matheus','Drew Pellum','Iacovos Constantinou','CodeWatchers','Dima Grossman','Dorthy Thielsen','Lambda Technology Inc','ADESANYA JOSHUA AYODEJI','Nitin Ranganath','Souza, Matheus','Drew Pellum','Iacovos Constantinou','CodeWatchers','Dima Grossman','Dorthy Thielsen','Lambda Technology Inc','ADESANYA JOSHUA AYODEJI','Nitin Ranganath','Souza, Matheus','Drew Pellum','Iacovos Constantinou','CodeWatchers','Dima Grossman','Dorthy Thielsen','Lambda Technology Inc','ADESANYA JOSHUA AYODEJI'];
   
     //Builds a card in DOM
@@ -6,19 +8,20 @@ $(document).ready( () => {
         //next line is for rendering in index.html"
         // const father = $('.main__body');
 
-        const father = $('#body-card');
+        const father = $(".tab-content");
         //console.log(father);
         //img
         const cardContainer = document.createElement('div');
         cardContainer.className = 'card rounded-3 mb-2';
+        // cardContainer.className = 'card';
         cardContainer.id = id;
         //console.log(cardContainer);
         const cardImage = document.createElement('img');
         //Display url image only if index = 0
-        if(index === 0){
-            cardImage.src = url;
-            cardImage.className = 'img-fluid';
-        }
+        // if(index === 0){
+        //     cardImage.src = url;
+        //     cardImage.className = 'img-fluid';
+        // }
         //avatar
         const cardHeader = document.createElement('article');
         cardHeader.className = 'card-body';
@@ -32,7 +35,7 @@ $(document).ready( () => {
         imgAvatar.className = 'rounded-circle p-1';
         imgAvatar.width='140';
         imgAvatar.height='50';
-        imgAvatar.src = `./img/people${index}.png`;
+        imgAvatar.src = `../img/people${index}.png`;
         $(linkAvatar).append(imgAvatar);
         $(avatar).append(linkAvatar);
         $(containerAvatar).append(avatar);
@@ -58,7 +61,7 @@ $(document).ready( () => {
         cardTitle.className = 'card-title mb-3';
         const h2Title = document.createElement('h2');
         const linkTitleBold = document.createElement('a');
-        linkTitleBold.href = './pages/post.html';
+        // linkTitleBold.href = './pages/post.html';
         linkTitleBold.className = 'text-dark fw-bolder';
         linkTitleBold.textContent = title;
         $(h2Title).append(linkTitleBold);
@@ -112,13 +115,13 @@ $(document).ready( () => {
         const footerContainer = document.createElement('div');
         footerContainer.className = 'd-flex justify-content-between';
         const elementContainer = document.createElement('div');
-        elementContainer.className = 'd-flex align-items-center ps-5';
+        elementContainer.className = 'd-flex align-items-center ps-10';
         //Reactions
         const linkReaction = document.createElement('div');
         linkReaction.href = '#';
         linkReaction.className = 'me-3';
         const iconReactions = document.createElement('img');
-        iconReactions.src = './img/like.png';
+        iconReactions.src = '../img/like.png';
         iconReactions.width = '20';
         iconReactions.height = '20';
         const paragraphReactions = document.createElement('p');
@@ -135,7 +138,7 @@ $(document).ready( () => {
         linkComment.href = '#';
         linkComment.className = 'me-3';
         const iconComment = document.createElement('img');
-        iconComment.src = './img/comment.png';
+        iconComment.src = '../img/comment.png';
         iconComment.width = '20';
         iconComment.height = '20';
         const paragraphComment = document.createElement('p');
@@ -153,10 +156,10 @@ $(document).ready( () => {
         timeText.className = 'me-1';
         timeText.textContent = '6 min read';
         $(timeRead).append(timeText);
-        const buttonDelete = document.createElement('button');
-        buttonDelete.className = 'btn btn-light border border-danger';
-        buttonDelete.textContent = 'Delete'
-        $(timeRead).append(buttonDelete);
+        // const buttonDelete = document.createElement('button');
+        // buttonDelete.className = 'btn btn-light border border-danger';
+        // buttonDelete.textContent = 'Delete'
+        // $(timeRead).append(buttonDelete);
         //Appends
         $(elementContainer).append(linkReaction);
         $(elementContainer).append(linkComment);
@@ -170,6 +173,9 @@ $(document).ready( () => {
         $(father).append(cardContainer);
     }
 
+
+    const testMatchArray = [ "-MnlZPTMqEfmD9GfwvrT", "-MnmO_B4RVqw3iul2z-L", "-MnsvvqFeKybw1nrmNl0", "-MnswDFNaIBwaOKYAumm" ]
+
     const getInfoPost = () => {
         $.ajax({
             method: 'GET',
@@ -180,9 +186,15 @@ $(document).ready( () => {
                 console.log(response)
                 //const person = JSON.parse(response)
                 const arrayPost = Object.entries(response);
+                const filteredArrayPost = arrayPost.filter((post) => {
+                    if(testMatchArray.includes(post[0]))
+                    return post
+                })
+                console.log(filteredArrayPost)
                 //console.log(arrayPost);
 
-                arrayPost.forEach((item,index)=>{
+
+                filteredArrayPost.forEach((item,index)=>{
                     const postIndex = index;
                     const postId = item[0];
                     const postTitle = item[1].title;

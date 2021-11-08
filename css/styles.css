@@ -1162,6 +1162,14 @@ body {
   height: 100%;
 }
 
+#contMenu #bodyCard .tab-content {
+  width: 100%;
+}
+
+#contMenu #bodyCard .tab-content .card {
+  width: 100%;
+}
+
 #contMenu .list-group-item {
   width: 240px;
   border: none;
@@ -1199,8 +1207,9 @@ body {
 }
 
 #contMenu .tab-pane .card .card-body {
-  width: 730px;
-  height: 350px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   background-color: white;
   border-radius: 10px;
   border: #d6d3d3 1px solid;

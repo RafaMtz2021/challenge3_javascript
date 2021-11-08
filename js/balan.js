@@ -115,14 +115,14 @@ const ocurrences = (post, searchValue) => {
             let objectedResponse = Object.entries(response); //ok
             
             //next lines is for testing //
-            // console.log(objectedResponse); //ok
+            console.log(objectedResponse); //ok
             
             /* next process (next two line) is included in the matchedIDsArray (delete next line)
             when testing finish */
-            // let postStructure = getPostArrayStructure(objectedResponse);
+            let postStructure = getPostArrayStructure(objectedResponse);
             
             //next line is for testing //
-            // console.log(postStructure);
+            console.log(postStructure);
             
             let matchedIDs = getMatchedIDsArray(objectedResponse, searchValue);
             //next line is for testing
@@ -152,55 +152,55 @@ const lupita = $("#lupa")
 
 
 //---------------------------- ESTE BLOQUE ESTÁ BIEN. REGRESAR A ÉL SI EL PARAMS FALLA ------------
+searchButton.click(event => {
+    const searchValue = searchBar.val();
+    if(searchValue.length !== 0){
+        event.preventDefault() 
+        console.log(searchValue)
+        getResponse(searchValue)
+        // $(location).attr("href", `./pages/search.html?search = ${searchValue}`)
+        
+    }
+})
+
+
 // searchButton.click(event => {
 //     const searchValue = searchBar.val();
-//     if(searchValue.length !== 0){
+//     if(searchValue.length !== 0){      
 //         event.preventDefault() 
 //         console.log(searchValue)
 //         getResponse(searchValue)
-//         $(location).attr("href", `./pages/search.html?search = ${searchValue}`)
+
+//         const queryString = `search = ${searchValue}`
+//         $(location).attr("href", `./pages/search.html?queryString`)
+//         // const queryString = window.location.search;
+//         console.log(queryString)
+//         const urlParams = new URLSearchParams(queryString)
         
 //     }
 // })
 
-
-searchButton.click(event => {
-    const searchValue = searchBar.val();
-    if(searchValue.length !== 0){      
-        event.preventDefault() 
-        console.log(searchValue)
-        getResponse(searchValue)
-
-        const queryString = `search = ${searchValue}`
-        $(location).attr("href", `./pages/search.html?queryString`)
-        // const queryString = window.location.search;
-        console.log(queryString)
-        const urlParams = new URLSearchParams(queryString)
-        
-    }
-})
-
-searchBar.keypress(event => {
+// searchBar.keypress(event => {
     
-    const searchValue = searchBar.val();
-    if(event.which == 13 && searchValue.length !== 0){
+//     const searchValue = searchBar.val();
+//     if(event.which == 13 && searchValue.length !== 0){
 
-        // let inputRegExp = new RegExp(searchValue, 'gi');
-        event.preventDefault() 
-        // $(searchValue).attr('value', searchBar.val())
-        // console.log(searchValue)
-        // let inputRegExp = new RegExp(searchValue, 'gi');    // this works good!
-        // console.log(searchValue);
-        // console.log(inputRegExp)
-        console.log(searchValue)
-        getResponse(searchValue)
-        $(location).attr("href","../pages/search.html")
+//         // let inputRegExp = new RegExp(searchValue, 'gi');
+//         event.preventDefault() 
+//         // $(searchValue).attr('value', searchBar.val())
+//         // console.log(searchValue)
+//         // let inputRegExp = new RegExp(searchValue, 'gi');    // this works good!
+//         // console.log(searchValue);
+//         // console.log(inputRegExp)
+//         console.log(searchValue)
+//         getResponse(searchValue)
+//         $(location).attr("href","../pages/search.html")
 
-    }
+//     }
 
 
     
-})
+// })
 
 
 

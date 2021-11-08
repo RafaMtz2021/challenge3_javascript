@@ -525,7 +525,7 @@ body {
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 240px;
-  height: 320px;
+  height: 320;
 }
 
 .LBcontTags .contHeadTags .LBheadTags {

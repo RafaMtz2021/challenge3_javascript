@@ -235,8 +235,6 @@ $(document).ready( () => {
             }
             arrayPost.forEach(item=>{
                 if(criteriaSearch != ''){
-                    //console.log('hay algo')
-                    
                     let titlePost = item[1].title.toLowerCase();
                     if(titlePost.includes(criteriaSearch)){
                         

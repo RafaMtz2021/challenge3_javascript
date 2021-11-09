@@ -173,8 +173,11 @@ $(document).ready( () => {
         $(father).append(cardContainer);
     }
 
-
+    // const IDstoRender = Storage.getItem(matchedIDs)
+    const IDstoRender = sessionStorage.getItem('matchedIDs')
+    console.log(IDstoRender, "oneString")
     const testMatchArray = [
+        // ["-Mnl7ZyN_jO3woEF9HMf","-Mnl8wZuuFvdwQDL2Eq8","-MnmO_B4RVqw3iul2z-L","-MnshAjL6QrpLdzCg_BO"]
         "-Mnl7ZyN_jO3woEF9HMf", "-Mnl8wZuuFvdwQDL2Eq8", "-MnmO_B4RVqw3iul2z-L", "-MnshAjL6QrpLdzCg_BO"
       ]
 
@@ -189,11 +192,11 @@ $(document).ready( () => {
                 //const person = JSON.parse(response)
                 const arrayPost = Object.entries(response);
                 const filteredArrayPost = arrayPost.filter((post) => {
-                    if(testMatchArray.includes(post[0]))
+                    if(IDstoRender.includes(post[0]))
                     return post
                 })
                 console.log(filteredArrayPost)
-                //console.log(arrayPost);
+                console.log(arrayPost);
 
 
                 filteredArrayPost.forEach((item,index)=>{

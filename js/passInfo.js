@@ -373,20 +373,23 @@ const ocurrences = (post, searchValue) => {
                 // const postsToRender = filteredArrayPost(objectedResponse, passedData)
                 // console.log(postsToRender[0])
                 
-                filteredArrayPost.forEach((item,index)=>{
-                    const postIndex = index;
-                    const postId = item[0];
-                    const postTitle = item[1].title;
-                    console.log(postTitle)
-                    const postUrl = item[1].url;
-                    const postTags = item[1].tags.map(tag=>{
-                        return tag;
-                    });
-                    console.log(postTags)
-                    const postLikes = item[1].likes;
-                    const protoDate = item[1].date;
-                    createCard(postIndex,postId,postTitle,postUrl,postTags,postLikes,protoDate);
-                });
+
+
+                //render 
+                // filteredArrayPost.forEach((item,index)=>{
+                //     const postIndex = index;
+                //     const postId = item[0];
+                //     const postTitle = item[1].title;
+                //     console.log(postTitle)
+                //     const postUrl = item[1].url;
+                //     const postTags = item[1].tags.map(tag=>{
+                //         return tag;
+                //     });
+                //     console.log(postTags)
+                //     const postLikes = item[1].likes;
+                //     const protoDate = item[1].date;
+                //     createCard(postIndex,postId,postTitle,postUrl,postTags,postLikes,protoDate);
+                // });
 
 
 

@@ -176,10 +176,10 @@ $(document).ready( () => {
     // const IDstoRender = Storage.getItem(matchedIDs)
     const IDstoRender = sessionStorage.getItem('matchedIDs')
     console.log(IDstoRender, "oneString")
-    const testMatchArray = [
-        // ["-Mnl7ZyN_jO3woEF9HMf","-Mnl8wZuuFvdwQDL2Eq8","-MnmO_B4RVqw3iul2z-L","-MnshAjL6QrpLdzCg_BO"]
-        "-Mnl7ZyN_jO3woEF9HMf", "-Mnl8wZuuFvdwQDL2Eq8", "-MnmO_B4RVqw3iul2z-L", "-MnshAjL6QrpLdzCg_BO"
-      ]
+    // const testMatchArray = [
+    //     // ["-Mnl7ZyN_jO3woEF9HMf","-Mnl8wZuuFvdwQDL2Eq8","-MnmO_B4RVqw3iul2z-L","-MnshAjL6QrpLdzCg_BO"]
+    //     "-Mnl7ZyN_jO3woEF9HMf", "-Mnl8wZuuFvdwQDL2Eq8", "-MnmO_B4RVqw3iul2z-L", "-MnshAjL6QrpLdzCg_BO"
+    //   ]
 
     const getInfoPost = () => {
         $.ajax({

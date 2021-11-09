@@ -1,6 +1,6 @@
 $(document).ready( () => {
     const names = ['Nitin Ranganath','Souza, Matheus','Drew Pellum','Iacovos Constantinou','CodeWatchers','Dima Grossman','Dorthy Thielsen','Lambda Technology Inc','ADESANYA JOSHUA AYODEJI','Nitin Ranganath','Souza, Matheus','Drew Pellum','Iacovos Constantinou','CodeWatchers','Dima Grossman','Dorthy Thielsen','Lambda Technology Inc','ADESANYA JOSHUA AYODEJI','Nitin Ranganath','Souza, Matheus','Drew Pellum','Iacovos Constantinou','CodeWatchers','Dima Grossman','Dorthy Thielsen','Lambda Technology Inc','ADESANYA JOSHUA AYODEJI','Nitin Ranganath','Souza, Matheus','Drew Pellum','Iacovos Constantinou','CodeWatchers','Dima Grossman','Dorthy Thielsen','Lambda Technology Inc','ADESANYA JOSHUA AYODEJI','Nitin Ranganath','Souza, Matheus','Drew Pellum','Iacovos Constantinou','CodeWatchers','Dima Grossman','Dorthy Thielsen','Lambda Technology Inc','ADESANYA JOSHUA AYODEJI'];
-    const createCard = (id,title,url,tags,likes,date) =>{
+    const createCard = (id,title,url,tags,likes,date,body) =>{
         // $(".post_card").hide();
         const father = $('.post_card');
         console.log(father);
@@ -159,6 +159,7 @@ $(document).ready( () => {
             //INPUT
             let input = document.createElement("input");
             input.type = "text";
+            input.id = "NewTitle";
             input.className = "css-class-name"; 
             $(input).val(title);
             $(cardBody).append(input);
@@ -167,10 +168,19 @@ $(document).ready( () => {
             //SAVE
             const buttonSave = document.createElement('button');
             // buttonSave.data('id', 'fsdfds');
-            buttonSave.className = 'btn btn-light border border-success';
-            buttonSave.id= 'someCrazyButton';
+            buttonSave.className = 'btn btn-info border border-danger';
+            buttonSave.id= 'myBtn';
             buttonSave.textContent = 'Save';
             $(timeRead).append(buttonSave);
+
+
+            buttonSave.addEventListener('click', function() {
+                body = $("#NewTitle").val();
+                // alert(str);
+                updatePost(id,body,url,tags,likes,date,body)
+            }, false)
+
+
         }, false);
 
         
@@ -203,8 +213,9 @@ $(document).ready( () => {
                 const postTags=  response.tags;
                 const postLikes = response.likes;
                 const protoDate = response.date;
+                const body = response.body;
 
-                createCard(postId,postTitle,postUrl,postTags,postLikes,protoDate);
+                createCard(postId,postTitle,postUrl,postTags,postLikes,protoDate,body);
             },
             error: (error) => {
                 // callback para cuando hay un error
@@ -214,11 +225,34 @@ $(document).ready( () => {
         });
         
     }
-    getInfoPostByID('-Mnl7-KeLSaTPEN2FRj2')
+    getInfoPostByID('-Mnl7HaJZ20Iw_ghCfA_')
 
 
-    // $('#someCrazyButton').click(function(){
-    //     //Some code
-    //     console.log('clickeado');
-    // });
+    $('#myBtn').click(function(){
+        // let str = $("#NewTitle").val();
+        alert('str');
+    });
 });
+
+const updatePost= (id,title,url,tags,likes,date,body)=>{
+    //UPDATE POST
+    $.ajax({
+        method: 'PUT',
+        url: `https://js-challenge-a0b1c-default-rtdb.firebaseio.com/${id}.json`,
+        data: JSON.stringify({title, body, url,tags,date,likes}),
+        
+        success: (response) =>{
+            console.log(response);
+            alert('Your Post was succesfully Updated');
+            $('#title').val('');
+            $('#body').val('');
+            $('#url').val('');
+            $('#tags').val('');
+        } ,
+        error: (error) => {
+            console.log(error);
+            alert('An error occurred while processing your request');
+        },
+        async: true,
+    })
+}
